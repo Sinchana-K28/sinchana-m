@@ -72,32 +72,46 @@
 
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
+<!-- Background Music (plays AFTER click) -->
+<audio id="bgMusic" loop>
     <source src="Song.mp4" type="audio/mp4">
+    Your browser does not support audio.
 </audio>
 
+<!-- PAGE 1 -->
 <div class="container" id="page1">
     <h1>
-        Hiiiiiiii.....................	&#10084;<br>
-        Nayiiiiiii&#128054;<br>
-        <strong>Network Busy&#128512;	&#128732;</strong>
+        Hiiiiiiii..................... &#10084;<br>
+        Nayiiiiiii &#128054;<br>
+        <strong>Network Busy &#128512; &#128732;</strong>
     </h1>
 
-    <button onclick="showSorry()">One sala click madi sayii....  💙</button>
+    <button onclick="showSorry()">
+        One sala click madi sayii.... 💙
+    </button>
 </div>
 
+<!-- PAGE 2 -->
 <div class="container hidden" id="page2">
-    <h1>
-        <h1 style="font-size: 100px; color: rgb(255, 0, 170); text-align: center;">Sorry.................	&#128583;</h1>.<br><br>
-        Sorry re ................... Sorry re.................. <br><br>
-        Aste get lost,<br>
-  
-    </h1>
+    <div style="font-size:100px; color:rgb(255,0,170); text-align:center;">
+        Sorry................. &#128583;
+    </div>
+
+    <div style="margin-top:20px; font-size:1.4em;">
+        Sorry re ................... Sorry re..................<br><br>
+        Aste get lost,
+    </div>
 </div>
 
 <script>
     function showSorry() {
+        const music = document.getElementById("bgMusic");
+
+        // play music AFTER user click (browser safe)
+        music.play().catch(() => {
+            console.log("Audio play blocked until interaction");
+        });
+
         document.getElementById("page1").classList.add("hidden");
         document.getElementById("page2").classList.remove("hidden");
     }
